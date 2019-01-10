@@ -4,6 +4,9 @@
 # Django Migrations
 */*/migrations/*
 
+# Django app media folder
+*/media/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
