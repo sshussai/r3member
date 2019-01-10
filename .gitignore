@@ -1,5 +1,11 @@
+# Pycharm IDE files
+.idea/*
+
 # Django Migrations
 */*/migrations/*
+
+# Django app media folder
+*/media/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

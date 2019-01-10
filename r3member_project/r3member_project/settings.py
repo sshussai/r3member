@@ -131,5 +131,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Media Root and Media URL
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    # folder where uploaded media is stored
+MEDIA_URL = '/media/'                            # url that can be used by a browser to access the uploaded media
+
 # Crispy Forms settings
 CRISPY_TEMPLATE_PACK='bootstrap4'
+
+# Login redirect
+LOGIN_REDIRECT_URL = 'blog-home'
+# Login page
+LOGIN_URL = 'login'
