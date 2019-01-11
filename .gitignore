@@ -7,6 +7,9 @@
 # Django app media folder
 */media/
 
+# Django collective static folder
+*/static/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
