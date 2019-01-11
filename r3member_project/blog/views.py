@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 
 # Create your views here.
@@ -57,3 +57,30 @@ class PostCreateView(LoginRequiredMixin, CreateView):           # inherit from L
     # Last requirement for a CreateView is to provide a redirect url or an absolute url to a specific
     # model instance
     # success_url = 'blog-home'
+
+
+# Class based view to update post
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):           # inherit from ListView
+    model = Post                        # Set the model to be queried for list
+    # This view includes a form - we must set the fields in that form
+    fields = ['title', 'content']
+    # default template name is different from normal format because the template is shared
+    # with the CreateView. The name for this template should be:
+    #   <app>/<model>_form.html
+
+    # we need to override the form_valid method to store the author when a post form is submitted
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    # Last requirement for a UpdateView is to provide a redirect url or an absolute url to a specific
+    # model instance
+    # success_url = 'blog-home'
+
+    # We have to make the sure that not only is a user logged in, but the user is the author of the post
+    # he's trying to edit. So the UserPassesTestMixin which uses the this test_func will ensure that
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
