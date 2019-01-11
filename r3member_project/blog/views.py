@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 # Create your views here.
@@ -84,3 +84,22 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):      
         if self.request.user == post.author:
             return True
         return False
+
+
+# Class based view for the post page (details)
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):           # inherit from DeleteView
+    model = Post                        # Set the model to be queried for list
+
+    # This method provides a form to base template asking the user if they're sure they wanna delete
+    # So, the template name is: <app>/<model>_confirm_delete.html
+
+    # We have to make the sure that not only is a user logged in, but the user is the author of the post
+    # he's trying to edit. So the UserPassesTestMixin which uses the this test_func will ensure that
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+    # For the delete view, we HAVE to provide a success_url
+    success_url = '/'
