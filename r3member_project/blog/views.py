@@ -33,6 +33,8 @@ class PostListView(ListView):           # inherit from ListView
     context_object_name = 'posts'       # default var: object_list
     # order by inverse date_posted
     ordering = ['-date_posted']
+    # pagination
+    paginate_by = 5
 
 
 # Class based view for the post page (details)
