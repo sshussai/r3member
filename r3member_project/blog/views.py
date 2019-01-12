@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from .models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -33,6 +34,29 @@ class PostListView(ListView):           # inherit from ListView
     context_object_name = 'posts'       # default var: object_list
     # order by inverse date_posted
     ordering = ['-date_posted']
+    # pagination
+    paginate_by = 5
+
+
+# Class based view for posts from a specific user
+class UserPostListView(ListView):           # inherit from ListView
+    model = Post                        # Set the model to be queried for list
+    # change the name of the default template used by the ListView
+    template_name = 'blog/user_posts.html'    # default template: <app>/<model><viewtype>.html
+    # set an attribute to rename the object to be presented in a list
+    context_object_name = 'posts'       # default var: object_list
+    # order by inverse date_posted
+    # ordering = ['-date_posted'] -- cannot use this since the query is getting overridden
+    # pagination
+    paginate_by = 5
+
+    # Change the queryset to get posts from a specific user, instead of all the posts
+    def get_queryset(self):
+        # this will get the user with the username that is gonna come from the url
+        # and the get_object_or_404 will get the user if it exists or return 404
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        # get the posts by that user, and order the returning set
+        return Post.objects.filter(author=user).order_by('-date_posted')
 
 
 # Class based view for the post page (details)
