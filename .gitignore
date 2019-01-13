@@ -7,6 +7,9 @@
 # Django app media folder
 */media/
 
+# variables file for settings.py
+vars.txt
+
 # Django collective static folder
 */static/
 
