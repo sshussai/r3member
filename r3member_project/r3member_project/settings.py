@@ -11,6 +11,15 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import json
+
+# variables file
+VARS_FILE = 'vars.txt'
+
+# Code to read variables file to get the variables
+var_data = open(VARS_FILE).read()
+VARS = json.loads(var_data)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +29,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_p@8+n3zt%3l+a62!$b7w#&qyu81ws6$^spa06zme!xop@d480'
+SECRET_KEY = VARS['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['162.246.157.122', '127.0.0.1',]
+ALLOWED_HOSTS = ['162.246.157.122',]
 
 
 # Application definition
@@ -82,13 +91,12 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
 
     'default': {
-       'ENGINE': '',
-       'NAME': '',
-       'USER': '',
-       'PASSWORD': '',
-       'HOST': '',
-       'PORT': '',
-
+       'ENGINE': VARS['DB_ENGINE'],
+       'NAME': VARS['DB_NAME'],
+       'USER': VARS['DB_USER'],
+       'PASSWORD': VARS['DB_PASSWORD'],
+       'HOST': VARS['DB_HOST'],
+       'PORT': VARS['DB_PORT'],
     }
 }
 
@@ -148,5 +156,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = VARS['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = VARS['EMAIL_HOST_PASSWORD']
