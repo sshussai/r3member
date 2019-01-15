@@ -1,4 +1,4 @@
-#R3MEMBER - A Django web app for quick tips and tricks
+# R3MEMBER - A Django web app for quick tips and tricks
 
 Using Django, MySQL and Bootstrap, along with other technologies, this webapp allows users to post shortcuts, tips and 
 and tricks they've learned. Ideally, this app will not contain fully detailed, thorough tutorials, but quick tips, along
