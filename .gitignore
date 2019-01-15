@@ -9,6 +9,7 @@
 
 # variables file for settings.py
 vars.txt
+dev_vars.txt
 
 # Django collective static folder
 */static/
