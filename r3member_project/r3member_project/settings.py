@@ -35,7 +35,7 @@ SECRET_KEY = VARS['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['162.246.157.122',]
+ALLOWED_HOSTS = ['162.246.157.122', '127.0.0.1', ]
 
 
 # Application definition
