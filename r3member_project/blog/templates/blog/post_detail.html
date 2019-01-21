@@ -15,6 +15,17 @@
           {% endif %}
         </div>
         <h2 class="article-title" >{{ object.title }}</h2>
+        <br>
+        <br>
+        {% if object.code %}
+            <h5 class="article-title" >Code</h5>
+            <br>
+            <p class="article-content">{{ object.code }}</p>
+            <br>
+            <br>
+        {% endif %}
+        <h5 class="article-title" >Post</h5>
+        <br>
         <p class="article-content">{{ object.content }}</p>
       </div>
     </article>
