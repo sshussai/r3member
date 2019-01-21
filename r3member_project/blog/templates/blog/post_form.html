@@ -11,11 +11,11 @@
               {{ form.title|as_crispy_field }}
           </div>
           <div id="codebuttonDiv">
-              <input type="reset" class="btn btn-info" id="codeButton" value="Add code box" onclick="myFunction()">
+              <input type="reset" class="btn btn-info" id="codeButton" value="View code box" onclick="hideCodeBox()">
           </div>
-          <code id="codeboxDiv" style="display:none">
+          <div id="codeboxDiv" style="display:none">
               {{ form.code|as_crispy_field }}
-          </code>
+          </div>
           <div id="contentboxDiv">
               {{ form.content|as_crispy_field }}
           </div>
@@ -25,15 +25,15 @@
       </div>
     </form>
       <script>
-        function myFunction() {
+        function hideCodeBox() {
           var btn = document.getElementById("codeButton");
           var codeBox = document.getElementById("codeboxDiv");
           if (codeBox.style.display == "none"){
             codeBox.style.display = "block";
-            btn.value="Remove code box"
+            btn.value="Hide code box"
           } else {
             codeBox.style.display = "none";
-            btn.value="Add code box";
+            btn.value="View code box";
           }
         }
       </script>
