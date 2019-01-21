@@ -12,7 +12,6 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     # New fields
-    has_code = models.BooleanField(default=False)
     code = models.TextField(default="")
 
     def __str__(self):
