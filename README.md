@@ -183,3 +183,29 @@ $ sudo systemctl restart nginx
 ```
 
 This deployment guide is based on [this article from digital ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04)
+
+### To update the production environment with new changes:
+* Update the master branch with the new code
+* Stop Nginx and gunicorn running in production
+```
+$ sudo systemctl stop gunicorn.service
+$ sudo systemctl stop nginx.service
+```
+* Fetch and update the master branch in production
+```
+$ git fetch
+$ git pull 
+```
+* Migrate any database changes if necessary (Make sure to activate the venv). Run the dev server if needed
+```
+$ source bin/activate
+$ python manage.py makemigrations
+$ python manange.py migrate
+$ sudo bin/python manage.py runserver 0.0.0.0:80
+```
+* After verifying the changes in the dev server, reload the daemons, and restart the two services
+```
+$ sudo systemctl daemon-reload
+$ sudo systemctl start gunicorn.service
+$ sudo systemctl start nginx.service
+```
