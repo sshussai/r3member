@@ -68,7 +68,7 @@ class PostDetailView(DetailView):           # inherit from ListView
 class PostCreateView(LoginRequiredMixin, CreateView):           # inherit from ListView
     model = Post                        # Set the model to be queried for list
     # This view includes a form - we must set the fields in that form
-    fields = ['title', 'content']
+    fields = ['title', 'has_code',  'code', 'content']
     # default template name is different from normal format because the template is shared
     # with the UpdateView. The name for this template should be:
     #   <app>/<model>_form.html
