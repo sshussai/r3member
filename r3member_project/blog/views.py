@@ -68,10 +68,15 @@ class PostDetailView(DetailView):           # inherit from ListView
 class PostCreateView(LoginRequiredMixin, CreateView):           # inherit from ListView
     model = Post                        # Set the model to be queried for list
     # This view includes a form - we must set the fields in that form
-    fields = ['title', 'content']
+    fields = ['title',  'code', 'content']
     # default template name is different from normal format because the template is shared
     # with the UpdateView. The name for this template should be:
     #   <app>/<model>_form.html
+
+    def get_form(self, form_class=None):
+        form = super(PostCreateView, self).get_form(form_class)
+        form.fields['code'].required = False
+        return form
 
     # we need to override the form_valid method to store the author when a post form is submitted
     def form_valid(self, form):
@@ -87,10 +92,15 @@ class PostCreateView(LoginRequiredMixin, CreateView):           # inherit from L
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):           # inherit from ListView
     model = Post                        # Set the model to be queried for list
     # This view includes a form - we must set the fields in that form
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'code']
     # default template name is different from normal format because the template is shared
     # with the CreateView. The name for this template should be:
     #   <app>/<model>_form.html
+
+    def get_form(self, form_class=None):
+        form = super(PostUpdateView, self).get_form(form_class)
+        form.fields['code'].required = False
+        return form
 
     # we need to override the form_valid method to store the author when a post form is submitted
     def form_valid(self, form):

@@ -15,6 +15,7 @@ import json
 
 # variables file
 VARS_FILE = 'vars.txt'
+# VARS_FILE = 'dev_vars.txt'
 
 # Code to read variables file to get the variables
 var_data = open(VARS_FILE).read()
@@ -34,7 +35,7 @@ SECRET_KEY = VARS['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['162.246.157.122',]
+ALLOWED_HOSTS = ['162.246.157.122', '127.0.0.1', ]
 
 
 # Application definition
@@ -87,16 +88,16 @@ WSGI_APPLICATION = 'r3member_project.wsgi.application'
 
 DATABASES = {
     # 'default':{
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
 
     'default': {
-       'ENGINE': VARS['DB_ENGINE'],
-       'NAME': VARS['DB_NAME'],
-       'USER': VARS['DB_USER'],
-       'PASSWORD': VARS['DB_PASSWORD'],
-       'HOST': VARS['DB_HOST'],
-       'PORT': VARS['DB_PORT'],
+           'ENGINE': VARS['DB_ENGINE'],
+           'NAME': VARS['DB_NAME'],
+           'USER': VARS['DB_USER'],
+           'PASSWORD': VARS['DB_PASSWORD'],
+           'HOST': VARS['DB_HOST'],
+           'PORT': VARS['DB_PORT'],
     }
 }
 
