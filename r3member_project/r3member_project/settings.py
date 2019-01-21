@@ -91,13 +91,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
 
-    # 'default': {
-    #    'ENGINE': VARS['DB_ENGINE'],
-    #    'NAME': VARS['DB_NAME'],
-    #    'USER': VARS['DB_USER'],
-    #    'PASSWORD': VARS['DB_PASSWORD'],
-    #    'HOST': VARS['DB_HOST'],
-    #    'PORT': VARS['DB_PORT'],
+        # 'default': {
+        #    'ENGINE': VARS['DB_ENGINE'],
+        #    'NAME': VARS['DB_NAME'],
+        #    'USER': VARS['DB_USER'],
+        #    'PASSWORD': VARS['DB_PASSWORD'],
+        #    'HOST': VARS['DB_HOST'],
+        #    'PORT': VARS['DB_PORT'],
     }
 }
 
