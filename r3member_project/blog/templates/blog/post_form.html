@@ -11,7 +11,7 @@
               {{ form.title|as_crispy_field }}
           </div>
           <div id="codebuttonDiv">
-              <input type="reset" class="btn btn-info" id="codeButton" value="View code box" onclick="hideCodeBox()">
+              <input type="button" class="btn btn-info" id="codeButton" value="View code box" onclick="hideCodeBox()">
           </div>
           <div id="codeboxDiv" style="display:none">
               {{ form.code|as_crispy_field }}
